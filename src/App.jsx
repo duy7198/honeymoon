@@ -10,8 +10,8 @@ const destinations = [
     hotel: "JW Marriott, Vinpearl Resort, InterContinental, La Veranda, Sol by Meliá",
     hotelRange: "1.5-8 triệu/đêm",
     food: "Hải sản tươi sống, gỏi cá trích, bún quậy, bánh canh chả cá, tiêu Phú Quốc, nước mắm truyền thống",
-    attractions: "Bãi Sao, VinWonders, Grand World, Safari, lặn san hô Hòn Thơm, chợ đêm Dinh Cậu, suối Tranh",
-    itinerary: "Ngày 1: Bay từ TPHCM (1h), check-in resort, tắm biển Bãi Dài\nNgày 2: Tour 4 đảo Nam đảo, lặn ngắm san hô\nNgày 3: VinWonders + Safari hoặc Bãi Sao\nNgày 4: Chợ đêm, mua nước mắm, bay về TPHCM",
+    attractions: "Bãi Sao, VinWonders, Grand World, Thị trấn Hoàng Hôn (Sunset Town), Safari, lặn san hô Hòn Thơm, chợ đêm Dinh Cậu, suối Tranh",
+    itinerary: "Ngày 1: Bay từ TPHCM (1h), check-in resort, tắm biển Bãi Dài\nNgày 2: Tour 4 đảo Nam đảo, lặn ngắm san hô\nNgày 3: VinWonders + Safari hoặc Bãi Sao\nNgày 4: Thị trấn Hoàng Hôn (Sunset Town), chợ đêm Dinh Cậu, mua nước mắm, bay về TPHCM",
     reason: "Vogue xếp hạng top honeymoon 2026. Biển đẹp nhất VN, bay chỉ 1h từ TPHCM, giá rẻ mùa thấp điểm, nhiều resort 5★",
     tips: "Cuối tháng 10 thời tiết đẹp dần, giá phòng rẻ hơn mùa cao điểm 30-50%. Book vé Vietjet sớm có thể được giá từ 500K/chiều"
   },
@@ -248,7 +248,7 @@ export default function App() {
       <div style={{ margin:"0 16px 24px", padding:16, background:"linear-gradient(135deg,#ecfdf5,#f0fdf4)", borderRadius:16, border:"1px solid #bbf7d0" }}>
         <div style={{ fontSize:15, fontWeight:700, color:"#166534", marginBottom:12 }}>🏆 Gợi Ý Theo Nhu Cầu</div>
         {[
-          {c:"🥇 Tổng thể tốt nhất",p:"🏝️ Phú Quốc",d:"Cân bằng giá–thời tiết–trải nghiệm. Bay 1h từ TPHCM"},
+          {c:"🥇 Tổng thể tốt nhất",p:"🏝️ Phú Quốc",d:"Cân bằng giá–thời tiết–trải nghiệm. Thị trấn Hoàng Hôn, VinWonders, biển đẹp. Bay 1h từ TPHCM"},
           {c:"☀️ Thời tiết đẹp nhất T10",p:"⛵ Hạ Long & 🏔️ Sa Pa (5★)",d:"Miền Bắc mùa thu tuyệt đẹp, lúa chín vàng"},
           {c:"💰 Tiết kiệm nhất",p:"🌸 Đà Lạt (5-12tr) & 🛶 Ninh Bình (6-12tr)",d:"Đà Lạt đi xe giường nằm chỉ 400K khứ hồi"},
           {c:"💎 Sang trọng nhất",p:"🌅 Vĩnh Hy (Amanoi 6★) & 🐢 Côn Đảo (Six Senses)",d:"Riêng tư tuyệt đối, đẳng cấp quốc tế"},
