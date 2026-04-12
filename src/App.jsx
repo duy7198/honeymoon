@@ -252,7 +252,7 @@ export default function App() {
           {c:"☀️ Thời tiết đẹp nhất T10",p:"⛵ Hạ Long & 🏔️ Sa Pa (5★)",d:"Miền Bắc mùa thu tuyệt đẹp, lúa chín vàng"},
           {c:"💰 Tiết kiệm nhất",p:"🌸 Đà Lạt (5-12tr) & 🛶 Ninh Bình (6-12tr)",d:"Đà Lạt đi xe giường nằm chỉ 400K khứ hồi"},
           {c:"💎 Sang trọng nhất",p:"🌅 Vĩnh Hy (Amanoi 6★) & 🐢 Côn Đảo (Six Senses)",d:"Riêng tư tuyệt đối, đẳng cấp quốc tế"},
-          {c:"🏮 Lãng mạn nhất",p:"🏮 Hội An + ⛵ Hạ Long",d:"Đèn lồng lung linh + du thuyền dưới trăng"},
+          {c:"🏮 Lãng mạn nhất",p:"🏮 Hội An + ⛵ Hạ Long + 🏝️ Phú Quốc",d:"Đèn lồng lung linh, du thuyền dưới trăng, Cầu Hôn hoàng hôn Phú Quốc"},
           {c:"✈️ Gần TPHCM nhất",p:"🐢 Côn Đảo (45p) & 🌸 Đà Lạt (50p/6h xe)",d:"Tiết kiệm thời gian di chuyển tối đa"},
         ].map((r,i) => (
           <div key={i} style={{ marginBottom:i<5?12:0, paddingBottom:i<5?12:0, borderBottom:i<5?"1px solid #d1fae5":"none" }}>
