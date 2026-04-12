@@ -153,6 +153,7 @@ export default function App() {
     if (filter === "budget") return d.costLevel <= 2;
     if (filter === "luxury") return d.costLevel >= 4;
     if (filter === "beach") return [1,2,4,8,10].includes(d.id);
+    if (filter === "romantic") return [1,3,6].includes(d.id);
     return true;
   });
 
@@ -168,7 +169,7 @@ export default function App() {
       </div>
 
       <div style={{ display: "flex", gap: 8, padding: "14px 16px", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
-        {[{key:"all",label:"Tất cả"},{key:"weather",label:"☀️ Thời tiết đẹp"},{key:"budget",label:"💰 Tiết kiệm"},{key:"luxury",label:"💎 Sang trọng"},{key:"beach",label:"🏖️ Biển"}].map(f => (
+        {[{key:"all",label:"Tất cả"},{key:"weather",label:"☀️ Thời tiết đẹp"},{key:"budget",label:"💰 Tiết kiệm"},{key:"luxury",label:"💎 Sang trọng"},{key:"beach",label:"🏖️ Biển"},{key:"romantic",label:"🏮 Lãng mạn"}].map(f => (
           <button key={f.key} onClick={() => {setFilter(f.key);setSelected(null);}} style={{ padding:"6px 14px", borderRadius:20, border:filter===f.key?"2px solid #b45309":"1px solid #d6d3d1", background:filter===f.key?"#fef3c7":"white", color:filter===f.key?"#92400e":"#57534e", fontSize:13, fontWeight:filter===f.key?700:400, cursor:"pointer", whiteSpace:"nowrap", fontFamily:"inherit" }}>{f.label}</button>
         ))}
       </div>
