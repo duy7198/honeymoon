@@ -162,7 +162,7 @@ export default function App() {
       <div style={{ background: "linear-gradient(180deg,rgba(120,53,15,0.08) 0%,transparent 100%)", padding: "32px 20px 20px", textAlign: "center", borderBottom: "1px solid rgba(180,130,60,0.15)" }}>
         <div style={{ fontSize: 13, letterSpacing: 4, color: "#92400e", textTransform: "uppercase", marginBottom: 6 }}>Vietnam Honeymoon Guide 2026</div>
         <h1 style={{ fontSize: 26, fontWeight: 700, margin: "0 0 4px", background: "linear-gradient(135deg,#92400e,#b45309,#d97706)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", lineHeight: 1.2 }}>Top 10 Nơi Nghỉ Tuần Trăng Mật</h1>
-        <div style={{ fontSize: 13, color: "#78716c", marginTop: 4 }}>📅 28–31/10/2026 · 4 ngày 4 đêm · 🛫 Từ TP.HCM</div>
+        <div style={{ fontSize: 13, color: "#78716c", marginTop: 4 }}>📅 27–31/10/2026 · 5 ngày 4 đêm · 🛫 Từ TP.HCM</div>
         <div style={{ marginTop: 10, padding: "8px 14px", background: "#fef9c3", borderRadius: 10, fontSize: 12, color: "#854d0e", display: "inline-block", border: "1px solid #fde68a" }}>
           ✅ Tất cả chi phí đã bao gồm vé máy bay/xe khứ hồi từ TP.HCM
         </div>
