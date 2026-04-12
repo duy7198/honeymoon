@@ -235,7 +235,7 @@ export default function App() {
             <tbody>{destinations.map((d,i) => (
               <tr key={d.id} style={{ borderBottom:"1px solid #f5f5f4", background:i%2===0?"white":"#fafaf9" }}>
                 <td style={{padding:"10px 8px",fontWeight:700,whiteSpace:"nowrap"}}>{d.emoji} {d.name}</td>
-                <td style={{padding:"10px 8px",fontSize:11,color:"#78716c"}}>{d.id===5?"Bay 50p/Xe 6h":d.id===6?"Bay 2h+Xe 1.5h":d.id===7?"Bay 2h+Xe 5h":d.id===9?"Bay 2h+Xe 1.5h":`Bay ${d.flight.match(/bay\s*([\d.]+[hp])/i)?.[1]||"—"}`}</td>
+                <td style={{padding:"10px 8px",fontSize:11,color:"#78716c"}}>{{1:"Bay 1h",2:"Bay 1h20",3:"Bay 1h20+Xe",4:"Bay 45p",5:"Bay 50p/Xe 6h",6:"Bay 2h+Xe 1.5h",7:"Bay 2h+Xe 5h",8:"Bay 1h+Xe",9:"Bay 2h+Xe 1.5h",10:"Bay 1h+Xe"}[d.id]}</td>
                 <td style={{padding:"10px 8px",fontWeight:700,color:d.color}}>{d.totalCost}</td>
                 <td style={{padding:"10px 8px",color:"#f59e0b",letterSpacing:1}}>{weatherStars(d.weatherScore)}</td>
                 <td style={{padding:"10px 8px",fontSize:11}}>{d.costLevel<=2?"💚 Tiết kiệm":d.costLevel<=3?"🟡 TB":d.costLevel===4?"🟠 Cao cấp":"🔴 Siêu sang"}</td>
