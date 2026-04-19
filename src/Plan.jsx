@@ -11,7 +11,7 @@ const plan = {
   dates: "27–31/10/2026",
   startDate: "2026-10-27",
   endDate: "2026-10-31",
-  duration: "5 ngày 4 đêm",
+  duration: "4 ngày 4 đêm",
   from: "TP.HCM",
   tier: {
     name: "🟡 Lãng Mạn",
@@ -140,28 +140,27 @@ const days = [
   },
   {
     id: 4,
-    title: "Ngày 5 — Brunch & Bay Về",
+    title: "Ngày 5 — Ăn Sáng & Bay Về",
     dateLabel: "31/10 · Thứ Bảy",
-    subtitle: "🥐 Sisterfields · 🎁 Quà Cố Đô · ✈️ SGN",
-    highlight: "🥐 Sisterfields brunch — Sunday Treat chia tay Ninh Bình",
+    subtitle: "🥐 Ăn sáng cuối · 🚐 Về Nội Bài · ✈️ Bay SGN",
+    highlight: "☕ Buổi sáng thong thả cuối cùng tại Ninh Bình",
     outfit: "Đồ thoải mái đi máy bay · Dép dễ tháo ở security check",
     weather: "Sáng mát 21°C · Trưa 27°C · Nội Bài có thể nóng ẩm",
-    planB: "Nếu bay tối: ở lại Sisterfields lâu hơn + đi Starbucks Tràng An chụp ảnh sáng sớm",
+    planB: "Nếu bay chiều tối: dậy muộn hơn, ăn sáng thong thả 9h, xe đi 11h",
     items: [
-      { t: "08:00–09:00", act: "🥐 Buffet sáng cuối + trả phòng", note: "Check-out trễ 12h (yêu cầu trước)", cost: "Đã gồm" },
-      { t: "09:30–11:00", act: "🎁 Mua quà — cơm cháy, mắm tép, rượu Kim Sơn, nem chua Yên Mạc", note: "Chợ Ninh Bình hoặc siêu thị đặc sản Hoa Lư", cost: "200–300K" },
-      { t: "11:30–13:00", act: "🥐 Brunch Sisterfields — Sunday Treat", note: "Brunch ngon, khẩu phần lớn, quán xinh chụp ảnh đẹp · 150K/set", cost: "200K/ng" },
-      { t: "13:30–15:30", act: "🚐 Xe riêng NB → HN", note: "Có thể dừng nghỉ ở Phủ Lý ăn nhẹ", cost: "400K" },
-      { t: "16:00–17:30", act: "🚕 Ra sân bay Nội Bài", note: "Grab hoặc xe dịch vụ · Đi sớm 2.5h trước giờ bay", cost: "350K" },
-      { t: "19:00–21:00", act: "✈️ VNA HAN → SGN (VN263 20:00→22:00)", note: "Check-in online trước 2h · Ký gửi rượu nếu có", cost: "~1.5tr" },
+      { t: "07:30–08:30", act: "🥐 Buffet sáng cuối tại resort", note: "Ăn thong thả, ngắm resort lần cuối · Chụp ảnh kỷ niệm quanh hồ sen", cost: "Đã gồm" },
+      { t: "08:30–09:00", act: "🧳 Trả phòng + xếp hành lý lên xe", note: "Kiểm tra kỹ tủ, ngăn kéo, két an toàn · Tip nhân viên 50–100K", cost: "—" },
+      { t: "09:00–11:00", act: "🚐 Xe riêng NB → Nội Bài (~2h)", note: "Có thể dừng mua quà dọc đường (cơm cháy, mắm tép) hoặc ăn nhẹ ở Phủ Lý", cost: "500K (đi thẳng sân bay)" },
+      { t: "11:30–12:30", act: "🛫 Check-in sân bay Nội Bài", note: "Đi trước giờ bay 2h · Ký gửi rượu Kim Sơn (>100ml)", cost: "—" },
+      { t: "13:00–15:00", act: "✈️ VNA HAN → SGN (VN229 13:00→15:10)", note: "Nghỉ ngơi, xem lại ảnh chuyến đi trên máy bay", cost: "~1.5tr" },
     ],
     tips: [
       "📦 Cơm cháy dễ vỡ — gói hành lý ký gửi cẩn thận",
       "🍶 Rượu Kim Sơn >100ml phải ký gửi, không mang lên cabin",
-      "⏰ Chuyến bay chiều tối thì trưa có thể đi Sisterfields thong thả",
       "💾 Tải ảnh về điện thoại/cloud ngay trên xe về HN cho chắc",
+      "🎁 Nếu không mua quà ngày 4, có thể dừng dọc đường NB → HN",
     ],
-    journalPrompt: "Nếu phải chọn 1 khoảnh khắc duy nhất của 5 ngày này để lưu lại mãi mãi, em chọn điều gì? Hai người muốn quay lại Ninh Bình khi nào?",
+    journalPrompt: "Nếu phải chọn 1 khoảnh khắc duy nhất của 4 ngày này để lưu lại mãi mãi, em chọn điều gì? Hai người muốn quay lại Ninh Bình khi nào?",
   },
 ];
 
@@ -394,23 +393,11 @@ const budget = [
   { label: "✈️ Bay VNA SGN↔HAN (2 người)", cost: "5–7tr" },
   { label: "🚐 Xe riêng HN↔NB (khứ hồi + Nội Bài)", cost: "1.1tr" },
   { label: "🏨 Resort 4★ 4 đêm (cặp đôi)", cost: "6–8tr" },
-  { label: "🍽️ Ăn uống 5 ngày (nhà hàng/fine dining)", cost: "4–5tr" },
+  { label: "🍽️ Ăn uống 4 ngày (nhà hàng/fine dining)", cost: "4–5tr" },
   { label: "🎫 Vé tham quan + thuê thuyền riêng", cost: "1.5–2tr" },
   { label: "💆 Couple spa 90 phút", cost: "1tr" },
   { label: "☕ Cafe, phố cổ, quà", cost: "1.5tr" },
   { label: "📋 Tổng cho CẶP ĐÔI", cost: "~20–26tr", bold: true },
-];
-
-const playlist = [
-  { title: "Vợ Người Ta — Phan Mạnh Quỳnh", vibe: "Xe đi đường dài" },
-  { title: "Bước Qua Nhau — Vũ", vibe: "Sunset Hang Múa" },
-  { title: "Em Gì Ơi — Jack, K-ICM", vibe: "Đi thuyền Tràng An" },
-  { title: "Hoa Nở Không Màu — Hoài Lâm", vibe: "Dinner candle-light" },
-  { title: "Người Ta Nói — AMee", vibe: "Đạp xe Tam Cốc" },
-  { title: "Nếu Em Là — Hoàng Dũng", vibe: "Buổi tối phố cổ" },
-  { title: "Perfect — Ed Sheeran", vibe: "Candle-light dinner" },
-  { title: "All of Me — John Legend", vibe: "Spa đôi / thư giãn" },
-  { title: "A Thousand Years — Christina Perri", vibe: "Ảnh cưới Tuyệt Tình Cốc" },
 ];
 
 const emergency = [
@@ -519,7 +506,6 @@ export default function HoneymoonPlan() {
     { id: "checklist", label: "Pre-trip", icon: "✅" },
     { id: "budget", label: "Chi phí", icon: "💰" },
     { id: "journal", label: "Nhật ký", icon: "📝" },
-    { id: "playlist", label: "Playlist", icon: "🎵" },
     { id: "emergency", label: "SOS", icon: "🆘" },
   ];
 
@@ -813,7 +799,7 @@ export default function HoneymoonPlan() {
       </Section>
 
       {/* ===== BUDGET ===== */}
-      <Section id="budget" title="Dự Trù Chi Phí (cặp đôi, 5N4Đ)" icon="💰">
+      <Section id="budget" title="Dự Trù Chi Phí (cặp đôi, 4N4Đ)" icon="💰">
         {budget.map((b, i) => (
           <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderTop: i === 0 ? "none" : b.bold ? "2px solid #92400e" : "1px dashed #e7e5e4", fontSize: 12, fontWeight: b.bold ? 700 : 400, color: b.bold ? "#92400e" : "#44403c" }}>
             <span>{b.label}</span>
@@ -831,17 +817,6 @@ export default function HoneymoonPlan() {
             <div style={{ fontSize: 11, color: journal[d.id] ? "#44403c" : "#a8a29e", fontStyle: journal[d.id] ? "normal" : "italic", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
               {journal[d.id] || "(Chưa có nhật ký)"}
             </div>
-          </div>
-        ))}
-      </Section>
-
-      {/* ===== PLAYLIST ===== */}
-      <Section id="playlist" title="Honeymoon Playlist Gợi Ý" icon="🎵" gradient="linear-gradient(135deg,#f0fdfa,#ccfbf1)">
-        <div style={{ fontSize: 11, color: "#115e59", marginBottom: 10, fontStyle: "italic" }}>Thêm vào Spotify/Apple Music playlist chuyến đi</div>
-        {playlist.map((s, i) => (
-          <div key={i} style={{ padding: "6px 0", borderBottom: i < playlist.length - 1 ? "1px dashed #ccfbf1" : "none" }}>
-            <div style={{ fontSize: 12, color: "#134e4a" }}>🎶 {s.title}</div>
-            <div style={{ fontSize: 10, color: "#0f766e", fontStyle: "italic" }}>{s.vibe}</div>
           </div>
         ))}
       </Section>
