@@ -1,4 +1,339 @@
 import { useState } from "react";
-const plans=[{id:"phuquoc",name:"Phú Quốc",emoji:"🏝️",color:"#0891b2",vibe:"Biển xanh, hoàng hôn Cầu Hôn, resort riêng tư",packing:["Đồ bơi couple 2-3 bộ","Kem chống nắng SPF50+","Váy maxi / áo đẹp chụp hoàng hôn","Dép biển + sandal đi tối","Túi chống nước điện thoại","Áo mưa gấp gọn (T10)","Nước hoa mini cho dinner","Sạc dự phòng"],tiers:[{name:"💚 Ngọt ngào",range:"~10-14tr/người",flight:{desc:"Vietjet SGN→PQC, book sớm",price:"800K-1.5tr KH"},hotel:{desc:"Resort 3-4★ bãi biển (Sol by Meliá, Sunset Sanato)",price:"800K-1.2tr/đêm → ~4tr/4đ"},total:"~10-14tr/người · Cặp đôi ~8-11tr/người",days:[{day:"Ngày 1 — Chào Đảo Ngọc",items:[{time:"06:00–07:00",act:"✈️ Bay SGN → Phú Quốc (1h)",cost:"~500K/chiều"},{time:"08:30–09:30",act:"🏨 Nhận phòng resort, welcome drink cho 2",cost:"—"},{time:"10:00–12:00",act:"🏖️ Tắm biển & hồ bơi resort — thời gian riêng cho 2",cost:"Đã gồm"},{time:"12:30–13:30",act:"🍽️ Lunch nhẹ tại resort (hải sản, nước dừa)",cost:"150–200K/ng"},{time:"14:00–16:30",act:"💆 Nghỉ trưa, đọc sách bên bờ biển, thư giãn",cost:"—"},{time:"17:00–18:30",act:"🌅 Dinh Cậu ngắm hoàng hôn cùng nhau",cost:"Miễn phí"},{time:"19:00–21:00",act:"🦀 Dạo chợ đêm tay trong tay, hải sản nướng",cost:"200–300K/ng"}]},{day:"Ngày 2 — Biển xanh & San hô",items:[{time:"07:30–08:30",act:"🌅 Bình minh bãi biển + ăn sáng",cost:"50–80K"},{time:"09:00–15:00",act:"🐠 Tour 4 đảo — lặn san hô đôi, câu cá, BBQ hải sản trên tàu",cost:"400–550K/ng"},{time:"15:30–17:00",act:"🏖️ Nghỉ ngơi bên hồ bơi resort",cost:"—"},{time:"17:30–19:00",act:"🍹 Cocktail ven biển, ngắm hoàng hôn",cost:"80–120K/ly"},{time:"19:30–21:00",act:"🕯️ Dinner lãng mạn nhà hàng hải sản view biển",cost:"300–500K/ng"}]},{day:"Ngày 3 — Hoàng Hôn & Kỷ niệm",items:[{time:"08:00–09:00",act:"🥐 Ăn sáng thong thả tại resort",cost:"Đã gồm"},{time:"09:30–12:00",act:"🏝️ Grand World — dạo phố Venice, chụp ảnh đôi",cost:"Thuyền 200K/ng"},{time:"12:30–13:30",act:"🍜 Lunch Grand World",cost:"100–150K/ng"},{time:"14:00–16:00",act:"🏖️ Bãi Sao — bãi biển đẹp nhất, tắm + chụp ảnh đôi",cost:"Miễn phí"},{time:"16:30–19:00",act:"💕 Cầu Hôn ngắm sunset + dạo phố Amalfi",cost:"Vé 100K + xe 15K"},{time:"19:30–21:00",act:"🎭 Show Kiss of the Sea hoặc dinner Sunset Town",cost:"200–400K/ng"}]},{day:"Ngày 4 — Ngọt ngào & Thư giãn",items:[{time:"07:00–09:00",act:"🌅 Tắm biển sáng + ăn sáng thong thả",cost:"50K"},{time:"09:30–11:00",act:"💆 Couple massage 60 phút — kỷ niệm trăng mật",cost:"400–600K/cặp"},{time:"11:30–12:30",act:"🎁 Mua quà: ngọc trai, tiêu, nước mắm Phú Quốc",cost:"200K"},{time:"13:00–14:00",act:"🍽️ Lunch nhẹ tại resort",cost:"100K"},{time:"14:30–17:00",act:"🏖️ Chiều cuối bên bãi biển — hồ bơi, nằm võng, đọc sách",cost:"—"},{time:"17:30–19:00",act:"🌅 Sunset cuối trên đảo — cocktail ven biển",cost:"80–120K/ly"},{time:"19:30–21:00",act:"🕯️ Farewell dinner lãng mạn — kỷ niệm 4 đêm trên đảo Ngọc",cost:"300–400K/ng"}]},{day:"Ngày 5 — Bay về",items:[{time:"07:00–08:30",act:"🌅 Bình minh cuối + ăn sáng, trả phòng",cost:"50K"},{time:"09:00–10:00",act:"📸 Chụp ảnh kỷ niệm quanh resort",cost:"—"},{time:"10:30–11:30",act:"🚐 Ra sân bay Phú Quốc",cost:"Xe 100K"},{time:"13:00–14:00",act:"✈️ Bay PQC → SGN",cost:"~500K"}]}]},{name:"🟡 Lãng mạn",range:"~16-22tr/người",flight:{desc:"Vietnam Airlines SGN→PQC",price:"1.5–2.5tr KH"},hotel:{desc:"Resort 4-5★ biển riêng (Novotel, La Veranda, Mövenpick)",price:"1.5–3tr/đêm → ~8tr/4đ"},total:"~16-22tr/người · Cặp đôi ~13-18tr/người",days:[{day:"Ngày 1 — Welcome Paradise",items:[{time:"08:00–09:00",act:"✈️ Bay VNA SGN → PQC",cost:"~1tr/chiều"},{time:"10:00–11:00",act:"🚐 Xe đón, check-in resort 5★ — hoa & trái cây welcome",cost:"Xe 200K"},{time:"11:30–13:00",act:"🍽️ Lunch resort view biển",cost:"200–300K/ng"},{time:"13:30–16:30",act:"🏖️ Hồ bơi vô cực + bãi biển riêng — hoàn toàn riêng tư",cost:"Đã gồm"},{time:"17:00–18:30",act:"🌅 Sunset cocktail sky bar cho 2",cost:"150–200K/ng"},{time:"19:00–21:00",act:"🕯️ Romantic dinner hải sản cao cấp",cost:"500–700K/ng"}]},{day:"Ngày 2 — Biển sâu & Spa đôi",items:[{time:"07:30–08:30",act:"🥐 Buffet sáng resort",cost:"Đã gồm"},{time:"09:00–14:30",act:"🐠 Cano 4 đảo — snorkeling đôi, BBQ đảo hoang",cost:"600–800K/ng"},{time:"15:00–16:30",act:"💆 Couple spa aromatherapy 90 phút",cost:"800K–1.2tr/cặp"},{time:"17:00–18:30",act:"🏖️ Bãi biển ngắm hoàng hôn, thời gian cho 2",cost:"—"},{time:"19:00–21:00",act:"🕯️ Candle-light dinner bên bờ biển",cost:"600K–1tr/cặp"}]},{day:"Ngày 3 — Cầu Hôn & Sunset Town",items:[{time:"08:00–09:00",act:"🥐 Ăn sáng thong thả",cost:"Đã gồm"},{time:"09:30–12:00",act:"🚡 Cáp treo Hòn Thơm + Aquatopia",cost:"Combo 540K/ng"},{time:"12:30–13:30",act:"🍽️ Lunch Sunset Town",cost:"150–200K/ng"},{time:"14:00–16:00",act:"🏖️ Bãi Sao relax + chụp ảnh",cost:"Miễn phí"},{time:"16:30–19:00",act:"💕 Cầu Hôn sunset — lãng mạn nhất đảo Ngọc",cost:"Vé 100K"},{time:"19:00–20:00",act:"🎭 Show Tinh Hoa Việt Nam",cost:"300K/ng"},{time:"20:30–21:30",act:"🍷 Wine dạo phố Amalfi lung linh",cost:"200K/ng"}]},{day:"Ngày 4 — Sweet Memories",items:[{time:"07:00–08:30",act:"🌅 Bình minh cuối + buffet sáng",cost:"Đã gồm"},{time:"09:00–10:30",act:"💆 Foot massage đôi + ngâm thảo dược",cost:"500–700K/cặp"},{time:"11:00–12:00",act:"🎁 Quà honeymoon: ngọc trai, tiêu, rượu sim",cost:"300K"},{time:"12:30–13:30",act:"🍽️ Lunch resort",cost:"200K/ng"},{time:"14:00–17:00",act:"🏖️ Pool & beach time cuối — tận hưởng resort trọn vẹn",cost:"—"},{time:"17:30–19:00",act:"🌅 Sunset cocktail cuối trên đảo",cost:"150K/ng"},{time:"19:30–21:00",act:"🕯️ Farewell candle-light dinner bên biển",cost:"500–700K/ng"}]},{day:"Ngày 5 — Bay về",items:[{time:"07:30–09:00",act:"🥐 Ăn sáng thong thả + trả phòng",cost:"Đã gồm"},{time:"09:30–10:30",act:"📸 Check-in ảnh kỷ niệm resort",cost:"—"},{time:"11:00",act:"🚐 Xe ra sân bay",cost:"200K"},{time:"13:00–14:00",act:"✈️ Bay PQC → SGN",cost:"~1tr"}]}]},{name:"🔴 Đẳng cấp",range:"~28-45tr/người",flight:{desc:"VNA Business Class",price:"3–5tr KH"},hotel:{desc:"Villa hồ bơi riêng 5★ (JW Marriott, InterContinental)",price:"5–10tr/đêm → ~24tr/4đ"},total:"~28-45tr/người · Cặp đôi ~22-35tr/người",days:[{day:"Ngày 1 — Villa & Private Beach",items:[{time:"09:00–10:00",act:"✈️ Bay Business SGN → PQC",cost:"~2tr/chiều"},{time:"11:00–12:00",act:"🚐 Xe VIP, nhận villa hồ bơi riêng — champagne welcome",cost:"Đã gồm"},{time:"12:30–14:00",act:"🍽️ Fine dining resort (Red Rum / INK 360)",cost:"500K–1tr/ng"},{time:"14:30–17:00",act:"🏖️ Hồ bơi + bãi biển private villa",cost:"Đã gồm"},{time:"17:30–18:30",act:"🍸 Sunset rooftop INK 360",cost:"300–500K/ng"},{time:"19:00–21:30",act:"💕 Beach dinner setup — bàn riêng trên cát, nến, hoa, 5 món",cost:"1.5–3tr/cặp"}]},{day:"Ngày 2 — Private Island & Wellness",items:[{time:"08:00–09:00",act:"🥐 In-villa breakfast",cost:"Đã gồm"},{time:"09:30–14:30",act:"🛥️ Cano riêng 4 đảo — lặn VIP, BBQ đảo hoang",cost:"2.5–4tr/cặp"},{time:"15:00–17:00",act:"💆 Couple spa premium 120 phút",cost:"2–3tr/cặp"},{time:"17:30–18:30",act:"🏖️ Sunset bãi biển riêng + cocktail",cost:"Đã gồm"},{time:"19:00–21:30",act:"🍷 Private dinner villa — chef riêng 7 món + wine",cost:"2–4tr/cặp"}]},{day:"Ngày 3 — Cầu Hôn & VIP Experience",items:[{time:"08:30–09:30",act:"🥐 Breakfast bên hồ bơi villa",cost:"Đã gồm"},{time:"10:00–13:00",act:"🎡 VinWonders + Safari VIP fast-pass",cost:"Combo 1.4tr + VIP 500K"},{time:"13:30–14:30",act:"🍽️ Lunch Grand World",cost:"200K/ng"},{time:"15:00–16:00",act:"🚡 Cáp treo Hòn Thơm All-in-One",cost:"770K/ng"},{time:"16:30–19:00",act:"💕 Cầu Hôn VIP sunset + thuyền Venice + show Tinh Hoa",cost:"Vé 100K+200K+300K"},{time:"19:30–21:30",act:"🍷 Fine dining Tempus Fugit JW Marriott",cost:"1–2tr/ng"}]},{day:"Ngày 4 — Wellness Day",items:[{time:"07:00–08:00",act:"🧘 Yoga bãi biển + bơi sáng",cost:"Đã gồm"},{time:"08:30–09:30",act:"🥐 Brunch champagne",cost:"Đã gồm"},{time:"10:00–11:30",act:"💆 Full spa farewell 90 phút",cost:"1.5–2.5tr/cặp"},{time:"12:00–13:00",act:"🍽️ Fine dining trưa",cost:"500K/ng"},{time:"14:00–17:00",act:"🏖️ Private pool villa + bãi biển riêng — thời gian cho 2",cost:"Đã gồm"},{time:"17:30–18:30",act:"🌅 Last sunset từ villa — champagne toast",cost:"300K"},{time:"19:00–21:30",act:"💕 Grand farewell dinner — chef riêng, nến, hoa, wine",cost:"2–4tr/cặp"}]},{day:"Ngày 5 — Bay về",items:[{time:"08:00–09:00",act:"🥐 In-villa breakfast cuối",cost:"Đã gồm"},{time:"09:30–10:30",act:"📸 Photoshoot kỷ niệm tại resort",cost:"—"},{time:"11:00–12:00",act:"🎁 Quà luxury: ngọc trai South Sea, tiêu organic",cost:"500K–1tr"},{time:"12:30",act:"🚐 Xe VIP ra sân bay",cost:"Đã gồm"},{time:"14:30–15:30",act:"✈️ Bay Business PQC → SGN",cost:"~2tr"}]}]}]},{id:"halong",name:"Vịnh Hạ Long",emoji:"⛵",color:"#1d4ed8",vibe:"Du thuyền dưới trăng, hoàng hôn trên vịnh",packing:["Áo khoác gió (vịnh gió mạnh)","Váy/áo đẹp dinner trên thuyền","Giày thể thao (leo Ti Tóp)","Đồ bơi","Kem chống nắng + kính râm","Thuốc say sóng","Máy ảnh chống nước","Nước hoa mini"],tiers:[{name:"💚 Ngọt ngào",range:"~10-14tr/người",flight:{desc:"Vietjet SGN→HAN + xe HN→HL",price:"1.5–2.5tr + 200K xe"},hotel:{desc:"Du thuyền 3★ (1 đêm) + KS boutique HN (2 đêm)",price:"2tr thuyền + 1tr KS"},total:"~10-14tr/người · Cặp đôi ~8-11tr/người",days:[{day:"Ngày 1 — Hà Nội mùa thu",items:[{time:"06:00–08:00",act:"✈️ Bay SGN → HAN (2h)",cost:"~1tr/chiều"},{time:"09:00–10:00",act:"🏨 Nhận phòng KS boutique phố cổ",cost:"Grab 200K"},{time:"10:30–12:00",act:"🍂 Hồ Hoàn Kiếm mùa thu — Đền Ngọc Sơn",cost:"Vé 30K"},{time:"12:30–13:30",act:"🍜 Phở / bún chả quán sạch đẹp",cost:"80K/ng"},{time:"14:00–16:00",act:"☕ Cafe trứng Giảng + dạo phố cổ tay trong tay",cost:"50K/ly"},{time:"16:30–18:00",act:"🌅 Hồ Tây hoàng hôn thu — rất lãng mạn",cost:"Miễn phí"},{time:"19:00–21:00",act:"🍽️ Dinner ấm cúng phố cổ (Quán Ăn Ngon)",cost:"200–300K/ng"}]},{day:"Ngày 2 — Du thuyền trên vịnh",items:[{time:"07:00",act:"🥐 Ăn sáng KS",cost:"Đã gồm"},{time:"08:00–10:30",act:"🚐 Xe limousine HN → Hạ Long",cost:"200K/ng"},{time:"11:00",act:"⛵ Lên du thuyền — welcome drink, cabin đôi view vịnh",cost:"2tr/ng (all-in)"},{time:"12:00–13:30",act:"🍽️ Lunch hải sản giữa vịnh",cost:"Đã gồm"},{time:"14:00–15:30",act:"🏔️ Hang Sửng Sốt — hang đẹp nhất vịnh",cost:"Đã gồm"},{time:"16:00–17:00",act:"🛶 Kayak đôi qua Hang Luồn — riêng tư giữa vịnh",cost:"Đã gồm"},{time:"17:30–19:00",act:"🌅 Hoàng hôn trên sundeck — khoảnh khắc đẹp nhất",cost:"Đã gồm"},{time:"19:30–21:00",act:"🕯️ Dinner trên thuyền + câu mực dưới trăng",cost:"Đã gồm"}]},{day:"Ngày 3 — Bình minh vịnh & Hà Nội",items:[{time:"06:00",act:"🌅 Bình minh trên vịnh — chỉ có 2 người và biển trời",cost:"—"},{time:"06:30–07:00",act:"🧘 Tai chi nhẹ trên sundeck",cost:"Đã gồm"},{time:"07:30–08:30",act:"🥐 Brunch trên thuyền",cost:"Đã gồm"},{time:"09:00–10:00",act:"🏝️ Đảo Ti Tóp — leo đỉnh ngắm toàn cảnh + tắm biển",cost:"Đã gồm"},{time:"10:30",act:"⛵ Rời thuyền",cost:"—"},{time:"11:30–14:00",act:"🚐 Xe về Hà Nội",cost:"200K/ng"},{time:"14:30–16:00",act:"💆 Foot massage đôi 60 phút",cost:"300–400K/cặp"},{time:"16:30–17:30",act:"☕ Cafe + mua ô mai, cốm Vòng làm quà",cost:"100K"},{time:"19:00–21:00",act:"🕯️ Romantic dinner HN (Home Hanoi / view Hồ Gươm)",cost:"300–400K/ng"}]},{day:"Ngày 4 — Thu Hà Nội lãng mạn",items:[{time:"07:30–08:30",act:"🥐 Phở cuốn / bánh cuốn nóng",cost:"50K/ng"},{time:"09:00–11:00",act:"🍂 Phố Phan Đình Phùng lá vàng + Văn Miếu",cost:"Vé 30K"},{time:"11:30–12:30",act:"🍽️ Lunch nhà hàng Việt",cost:"100K/ng"},{time:"14:00–16:00",act:"☕ Cafe Hồ Gươm + mua quà lụa, ô mai, cốm",cost:"150K quà"},{time:"16:30–18:00",act:"💆 Foot massage đôi chiều cuối (60 phút)",cost:"250–350K/cặp"},{time:"19:00–21:00",act:"🕯️ Farewell dinner Hà Nội thu",cost:"250–350K/ng"}]},{day:"Ngày 5 — Bay về",items:[{time:"07:30–08:30",act:"🥐 Ăn sáng cuối + trả phòng",cost:"50K/ng"},{time:"09:00–10:00",act:"📸 Dạo Hồ Gươm chụp ảnh sáng cuối",cost:"—"},{time:"10:30–12:00",act:"🚕 Ra sân bay Nội Bài",cost:"Grab 300K"},{time:"14:00–16:00",act:"✈️ Bay HAN → SGN",cost:"~1tr"}]}]},{name:"🟡 Lãng mạn",range:"~17-24tr/người",flight:{desc:"VNA SGN→HAN giờ đẹp",price:"2.5–3.5tr KH"},hotel:{desc:"Du thuyền 4-5★ (Orchid, Era, Stellar) + KS 4★ HN",price:"3–4tr thuyền + 2tr KS"},total:"~17-24tr/người · Cặp đôi ~14-19tr/người",days:[{day:"Ngày 1 — Thu Hà Nội thơ mộng",items:[{time:"08:00–10:00",act:"✈️ Bay VNA SGN → HAN",cost:"~1.5tr/chiều"},{time:"11:00",act:"🏨 Xe đón, KS boutique 4★ phố cổ",cost:"Xe 350K"},{time:"12:00–13:00",act:"🍽️ Lunch tinh tế (Madame Hiên / KOTO)",cost:"250–350K/ng"},{time:"14:00–16:00",act:"🍂 Hồ Tây + Chùa Trấn Quốc — thu HN đẹp nhất",cost:"Miễn phí"},{time:"16:30–18:00",act:"☕ Afternoon tea rooftop view Hồ Gươm",cost:"100K/ng"},{time:"19:00–21:30",act:"🕯️ Romantic dinner (Home Hanoi / T.U.N.G)",cost:"400–600K/ng"}]},{day:"Ngày 2 — Du thuyền 5★",items:[{time:"07:00",act:"🥐 Buffet sáng KS",cost:"Đã gồm"},{time:"08:00–10:30",act:"🚐 Xe VIP → Hạ Long",cost:"Đã gồm tour"},{time:"11:00",act:"⛵ Du thuyền 5★ — champagne, honeymoon cabin",cost:"3–4tr/ng (all-in)"},{time:"12:00–13:30",act:"🍽️ Set lunch hải sản 5 món",cost:"Đã gồm"},{time:"14:00–15:30",act:"🏔️ Hang Sửng Sốt + Động Mê Cung",cost:"Đã gồm"},{time:"16:00–17:00",act:"🛶 Kayak đôi Hang Luồn + bơi biển vắng",cost:"Đã gồm"},{time:"17:30–19:00",act:"🌅 Sunset sundeck + cooking class nấu ăn đôi",cost:"Đã gồm"},{time:"19:30–21:30",act:"🕯️ Gala dinner 6 món + acoustic + câu mực dưới trăng",cost:"Đã gồm"}]},{day:"Ngày 3 — Bình minh & Spa",items:[{time:"06:00",act:"🌅 Bình minh riêng tư trên vịnh",cost:"—"},{time:"06:30",act:"🧘 Yoga boong thuyền",cost:"Đã gồm"},{time:"07:30",act:"🥐 Brunch",cost:"Đã gồm"},{time:"09:00–10:00",act:"🏝️ Ti Tóp panoramic",cost:"Đã gồm"},{time:"10:30",act:"⛵ Rời thuyền",cost:"—"},{time:"11:00–13:30",act:"🚐 Xe VIP về HN",cost:"Đã gồm"},{time:"14:00–15:30",act:"💆 Couple spa HN 90 phút (La Siesta / Zen Spa)",cost:"800K–1.2tr/cặp"},{time:"16:00–17:30",act:"🛍️ Shopping phố cổ: lụa, tranh, quà",cost:"200K"},{time:"18:00–20:30",act:"🕯️ Farewell dinner fine dining view hồ",cost:"500–700K/ng"}]},{day:"Ngày 4 — Hà Nội thu trọn vẹn",items:[{time:"08:00–09:00",act:"🥐 Phở / bún thang truyền thống",cost:"60K/ng"},{time:"09:30–11:00",act:"🍂 Phố Phan Đình Phùng lá vàng + Hoàng thành",cost:"Vé 30K"},{time:"11:30–12:30",act:"🍽️ Lunch nhà hàng",cost:"150K/ng"},{time:"14:00–16:00",act:"🛍️ Shopping phố cổ: lụa, quà lưu niệm + cafe rooftop",cost:"200K quà"},{time:"16:30–18:00",act:"💆 Couple massage chiều (60 phút)",cost:"500–700K/cặp"},{time:"19:00–21:00",act:"🕯️ Farewell romantic dinner view Hồ Gươm",cost:"400–600K/ng"}]},{day:"Ngày 5 — Bay về",items:[{time:"08:00–09:00",act:"🥐 Ăn sáng + trả phòng",cost:"60K/ng"},{time:"09:30–10:30",act:"📸 Dạo phố cổ sáng cuối, chụp ảnh",cost:"—"},{time:"11:00–13:00",act:"🚕 Ra Nội Bài",cost:"Grab 350K"},{time:"14:30–16:30",act:"✈️ Bay VNA HAN → SGN",cost:"~1.5tr"}]}]},{name:"🔴 Đẳng cấp",range:"~28-40tr/người",flight:{desc:"VNA Business Class",price:"4–6tr KH"},hotel:{desc:"Du thuyền luxury (Heritage, Paradise, Catherine) + KS 5★ HN (Sofitel, Capella)",price:"5–8tr thuyền + 5tr KS"},total:"~28-40tr/người · Cặp đôi ~22-32tr/người",days:[{day:"Ngày 1 — Luxury autumn Hà Nội",items:[{time:"09:00–11:00",act:"✈️ Business Class SGN → HAN",cost:"~2.5tr/chiều"},{time:"12:00",act:"🏨 Sofitel Metropole / Capella — suite honeymoon",cost:"Đã gồm"},{time:"13:00–14:30",act:"🍽️ Fine dining La Badiane",cost:"600K–1tr/ng"},{time:"15:00–17:00",act:"🚲 Private cyclo phố cổ thu + trà sen",cost:"500K–1tr/cặp"},{time:"17:30–18:30",act:"🍸 Afternoon tea Le Club Metropole",cost:"400K/ng"},{time:"19:00–21:30",act:"💕 Dinner T.U.N.G Dining (top 1 fine dining HN)",cost:"1–2tr/ng"}]},{day:"Ngày 2 — Du thuyền luxury",items:[{time:"07:30",act:"🥐 Breakfast 5★ Sofitel",cost:"Đã gồm"},{time:"08:00–10:30",act:"🚐 Xe VIP → Hạ Long",cost:"Đã gồm"},{time:"11:00",act:"⛵ Du thuyền luxury — champagne, hoa cabin suite",cost:"5–8tr/ng (all-in)"},{time:"12:30–14:00",act:"🍽️ Set lunch 7 món + wine",cost:"Đã gồm"},{time:"14:30–16:00",act:"🛶 Kayak đôi vịnh Lan Hạ hoang sơ",cost:"Đã gồm"},{time:"16:30–18:30",act:"🌅 Sundeck riêng — wine tasting + sunset Di sản",cost:"Đã gồm"},{time:"19:00–21:30",act:"🕯️ Gala dinner 7 món + nhạc sống + câu mực",cost:"Đã gồm"}]},{day:"Ngày 3 — Wellness & Hà Nội luxury",items:[{time:"06:00",act:"🌅 Bình minh riêng tư",cost:"—"},{time:"06:30",act:"🧘 Yoga bình minh sundeck",cost:"Đã gồm"},{time:"07:30–09:00",act:"🥐 Brunch sang trọng",cost:"Đã gồm"},{time:"09:30–10:30",act:"🏝️ Ti Tóp panoramic + tắm biển",cost:"Đã gồm"},{time:"11:00",act:"⛵ Rời thuyền, xe VIP về HN",cost:"Đã gồm"},{time:"14:00–16:00",act:"💆 Couple spa premium Sofitel 120 phút",cost:"2–3tr/cặp"},{time:"17:00–18:00",act:"🛍️ Shopping Tràng Tiền Plaza",cost:"Tùy"},{time:"18:30–21:00",act:"💕 Private dinner rooftop view Hồ Gươm + wine",cost:"1–1.5tr/ng"}]},{day:"Ngày 4 — Hà Nội luxury cuối",items:[{time:"08:00–09:00",act:"🥐 In-room breakfast",cost:"Đã gồm"},{time:"09:30–11:00",act:"🍂 Private autumn walk + Hoàng thành",cost:"Guide 500K"},{time:"11:30–13:00",act:"🍽️ Fine dining lunch",cost:"500K–1tr/ng"},{time:"14:00–16:00",act:"💆 Premium couple spa Sofitel 90 phút",cost:"1.5–2tr/cặp"},{time:"16:30–17:30",act:"🍸 Afternoon tea cuối tại Le Club",cost:"300K/ng"},{time:"19:00–21:30",act:"💕 Grand farewell dinner — fine dining + wine",cost:"1–1.5tr/ng"}]},{day:"Ngày 5 — Bay về",items:[{time:"08:30–09:30",act:"🥐 Breakfast 5★ cuối + trả phòng",cost:"Đã gồm"},{time:"10:00–11:00",act:"📸 Last photos Hồ Gươm",cost:"—"},{time:"11:30–13:00",act:"🚐 Xe VIP ra Nội Bài",cost:"600K"},{time:"14:30–16:30",act:"✈️ Business HAN → SGN",cost:"~2.5tr"}]}]}]},{id:"ninhbinh",name:"Ninh Bình",emoji:"🛶",color:"#78716c",vibe:"Thuyền Tràng An, đỉnh Hang Múa ngắm Ngọa Long, phố cổ lên đèn — Hạ Long trên cạn lãng mạn",packing:["Giày thể thao êm chân (Hang Múa 500 bậc)","Áo dài couple + váy chụp đồng lúa","Áo kín đáo tay dài (Bái Đính, Bích Động)","Kem chống nắng + nón lá (thuyền 3h)","Chai nước + tiền lẻ tip lái đò","Pin dự phòng + áo mưa nhẹ","Nước hoa mini cho dinner","Vé Tràng An đặt trước qua web"],tiers:[{name:"💚 Ngọt ngào",range:"~7-10tr/người",flight:{desc:"Vietjet SGN→HAN + limousine HN→NB",price:"1.5–2.5tr + 150K"},hotel:{desc:"Lasen Village Tam Cốc (resort mới, trung tâm, view núi) hoặc homestay đồng lúa",price:"500–800K/đêm → ~2.5tr/4đ"},total:"~7-10tr/người · Cặp đôi ~6-8.5tr/người",days:[{day:"Ngày 1 — Chào Cố Đô & Phố Cổ Lên Đèn",items:[{time:"06:00–08:00",act:"✈️ Bay SGN → HAN (2h)",cost:"~1tr/chiều"},{time:"08:30–10:30",act:"🚐 Limousine HN → NB (1.5h) — đón trả tận nơi",cost:"150K/ng"},{time:"11:00–12:00",act:"🏡 Check-in Lasen Village Tam Cốc (resort mới, view núi) hoặc homestay đồng lúa",cost:"—"},{time:"12:30–13:30",act:"🍽️ Lunch dê tái chanh + cơm cháy sốt dê (Dê 1969 / Áp Xuân Vinh)",cost:"120–180K/ng"},{time:"14:00–15:30",act:"☕ Cafe chill: At Where Cafe hoặc DRIP by haimuoibon (matcha ổn)",cost:"50–70K/ly"},{time:"16:00–18:00",act:"🛵 Thuê xe máy đôi (100–120K) dạo cánh đồng lúa quanh Tam Cốc",cost:"100K"},{time:"18:30–20:00",act:"🏮 Phố cổ Hoa Lư lên đèn — đẹp như Hội An, chèo thuyền đôi buổi tối",cost:"Thuyền 50K"},{time:"20:30–22:00",act:"🔥 Dinner nướng phố cổ: Gogi / Nướng Gasu / 1988 BBQ",cost:"200–280K/ng"}]},{day:"Ngày 2 — Tràng An & Hoàng Hôn Ngọa Long",items:[{time:"06:00–06:30",act:"🥐 Ăn sáng CHẮC BỤNG (thuyền 3 tiếng!) + đi vệ sinh trước khi lên thuyền",cost:"40K"},{time:"07:00–07:30",act:"🎫 Đến Tràng An — đặt vé online từ tối trước, không phải xếp hàng",cost:"—"},{time:"07:30–10:30",act:"🛶 Tràng An tuyến 2 — thuyền 4-5 người, cặp đôi có thể thuê riêng cả thuyền",cost:"300K/ng + tip 50K"},{time:"11:00–12:30",act:"🍽️ Lunch ven Tràng An: Thành Long / Chính Thu (dê chuẩn vị)",cost:"150–200K/ng"},{time:"13:30–15:00",act:"☕ Offy Highlands Tràng An — view Bến An cực đẹp, có ổ điện sạc pin",cost:"60K/ly"},{time:"15:30–17:30",act:"🏔️ Hang Múa 500 bậc — chụp ảnh đôi + ngắm hoàng hôn 'Ngọa Long'",cost:"Vé 100K"},{time:"18:00–19:00",act:"💧 Về resort tắm nghỉ, thay đồ",cost:"—"},{time:"19:30–21:00",act:"🔥 Dinner lẩu bò Thanh Phong / lẩu cuốn Huế",cost:"180–250K/ng"}]},{day:"Ngày 3 — Tâm Linh & Tuyệt Tình Cốc",items:[{time:"07:30–08:30",act:"🥐 Ăn sáng miến lươn Ninh Bình / bún mọc Tố Nhu",cost:"50K/ng"},{time:"09:00–11:00",act:"🪷 Địa Tạng Phi Lai Tự — chùa chữa lành, chuông gió, ảnh đôi áo dài",cost:"Miễn phí"},{time:"11:30–12:30",act:"🍽️ Lunch gỏi cá nhệch Kim Sơn / bánh đa cá rô đồng",cost:"100–150K/ng"},{time:"13:30–15:30",act:"💎 Tuyệt Tình Cốc (Động Am Tiên) — nước xanh ngọc bích, góc ảnh couple signature",cost:"Vé 45K"},{time:"16:00–17:30",act:"🪷 Chùa Bích Động — mùa hoa súng T10-12 cực đẹp, mặc kín đáo",cost:"Miễn phí"},{time:"18:00–19:00",act:"☕ 007 Đam Khê Specialty Coffee Tam Cốc — cafe/matcha ổn nhất",cost:"60K/ly"},{time:"19:30–21:00",act:"🕯️ Dinner ấm cúng ven sông Tam Cốc",cost:"180–220K/ng"}]},{day:"Ngày 4 — Bái Đính & Thung Nham",items:[{time:"07:30–08:30",act:"🥐 Ăn sáng tại resort",cost:"30K"},{time:"09:00–11:30",act:"🏛️ Chùa Bái Đính (lớn nhất ĐNA) — xe điện, mặc áo kín đáo tay dài",cost:"Xe điện 60K + vé 50K"},{time:"12:00–13:00",act:"🍽️ Lunch ốc núi hấp sả + dê nướng",cost:"120–180K/ng"},{time:"14:00–16:00",act:"🐦 Thung Nham — vườn chim về tổ, thuyền đôi yên bình giữa thiên nhiên",cost:"Vé 150K + đò 100K"},{time:"16:30–17:30",act:"📸 Bãi đá Tràng An ('Rìa Tràng An — Điểm chụp ảnh cưới đẹp')",cost:"Miễn phí"},{time:"18:00–19:00",act:"🌅 Sunset trên đồng lúa — thời gian riêng cho 2",cost:"—"},{time:"19:30–21:30",act:"🕯️ Farewell dinner — dê 7 món + rượu nếp Kim Sơn",cost:"250–350K/ng"}]},{day:"Ngày 5 — Brunch & Về SGN",items:[{time:"08:00–09:00",act:"🥐 Ngủ nướng, ăn sáng thong thả",cost:"Đã gồm"},{time:"09:30–10:30",act:"🎁 Mua quà: cơm cháy chà bông, mắm tép Gia Viễn, nem chua Yên Mạc, rượu Kim Sơn",cost:"150–200K"},{time:"11:00–12:30",act:"🥐 Brunch Sisterfields — Sunday Treat 150K, khẩu phần lớn, quán xinh",cost:"150K/ng"},{time:"13:00–15:00",act:"🚐 Limousine NB → HN (1.5h)",cost:"150K/ng"},{time:"15:30–17:00",act:"🚕 Ra sân bay Nội Bài",cost:"Grab 300K"},{time:"18:30–20:30",act:"✈️ Bay HAN → SGN",cost:"~1tr"}]}]},{name:"🟡 Lãng mạn",range:"~12-17tr/người",flight:{desc:"VNA SGN→HAN + xe riêng",price:"2.5–3.5tr + 400K"},hotel:{desc:"Resort 4★: Emeralda, Tam Coc Garden, Hidden Charm hoặc Lasen Village Tam Cốc",price:"1.2–2tr/đêm → ~6tr/4đ"},total:"~12-17tr/người · Cặp đôi ~10-14tr/người",days:[{day:"Ngày 1 — Di Sản Tràng An",items:[{time:"07:00–09:00",act:"✈️ VNA SGN → HAN giờ đẹp",cost:"~1.5tr/chiều"},{time:"09:30–11:30",act:"🚐 Xe riêng HN → NB, check-in Emeralda / Tam Coc Garden — honeymoon setup",cost:"400K + tip"},{time:"12:00–13:00",act:"🍽️ Set lunch dê đặc sản tại resort",cost:"220–280K/ng"},{time:"14:00–17:00",act:"🛶 Tràng An tuyến 2 — thuyền thuê riêng (không chung nhóm), 3h riêng tư",cost:"Vé 300K × 2 + riêng 600K"},{time:"17:30–18:30",act:"☕ Offy Highlands Tràng An — sunset cocktail view Bến An",cost:"120K/ly"},{time:"19:00–21:00",act:"🕯️ Romantic dinner resort — dê 7 món + rượu vang",cost:"400–550K/ng"}]},{day:"Ngày 2 — Hang Múa & Spa Đôi",items:[{time:"07:00–07:30",act:"🥐 Buffet sáng resort + chuẩn bị leo núi",cost:"Đã gồm"},{time:"08:00–10:30",act:"🛶 Tam Cốc thuyền đôi sớm — sương khói, vắng, sông Ngô Đồng thơ mộng",cost:"Vé 200K + tip 50K"},{time:"11:00–12:30",act:"🏔️ Hang Múa 500 bậc — chụp ảnh couple 'Ngọa Long' panoramic",cost:"Vé 100K"},{time:"13:00–14:00",act:"🍽️ Lunch view đồng lúa",cost:"180K/ng"},{time:"14:30–16:30",act:"💆 Couple spa resort 90 phút (hot stone / thảo dược)",cost:"800K–1.2tr/cặp"},{time:"17:00–18:30",act:"🚲 Đạp xe đôi sunset qua ruộng lúa → đền Thái Vi → Bích Động",cost:"50K"},{time:"19:00–21:00",act:"🕯️ Candle-light dinner bên hồ sen resort",cost:"500–700K/ng"}]},{day:"Ngày 3 — Địa Tạng Phi Lai Tự & Tuyệt Tình Cốc",items:[{time:"07:30–08:30",act:"🥐 Buffet sáng thong thả",cost:"Đã gồm"},{time:"09:00–11:00",act:"🪷 Địa Tạng Phi Lai Tự — ảnh áo dài couple giữa chuông gió",cost:"Miễn phí + xe riêng 200K"},{time:"11:30–12:30",act:"🍽️ Lunch tinh tế",cost:"250K/ng"},{time:"13:30–15:30",act:"💎 Tuyệt Tình Cốc — chụp ảnh couple nước xanh ngọc bích",cost:"Vé 45K"},{time:"16:00–17:30",act:"🪷 Chùa Bích Động + Thung Nham (tùy chọn: ngắm chim về tổ)",cost:"Vé 150K"},{time:"18:00–19:00",act:"☕ 007 Đam Khê Coffee — specialty matcha",cost:"100K/cặp"},{time:"19:30–21:30",act:"🕯️ Fine dinner 7 Bridges — đồ ngon, hợp nhâm nhi tối",cost:"400–550K/ng"}]},{day:"Ngày 4 — Bái Đính & Phố Cổ Đêm",items:[{time:"07:30–08:30",act:"🥐 Buffet sáng",cost:"Đã gồm"},{time:"09:00–11:30",act:"🏛️ Chùa Bái Đính — xe điện VIP, ảnh áo dài couple",cost:"Xe 250K + vé 50K"},{time:"12:00–13:00",act:"🍽️ Lunch tại Bái Đính",cost:"150–200K/ng"},{time:"14:00–16:00",act:"🛶 Đầm Vân Long — thuyền mái che yên tĩnh, ngắm voọc quý",cost:"Đò riêng 200K"},{time:"16:30–17:30",act:"📸 Bãi đá Tràng An — chụp ảnh cưới concept",cost:"—"},{time:"18:30–20:00",act:"🏮 Phố cổ Hoa Lư lên đèn + chèo thuyền đôi",cost:"Thuyền 80K"},{time:"20:30–22:00",act:"🍷 Dinner phố cổ + dạo đêm lãng mạn",cost:"350–500K/ng"}]},{day:"Ngày 5 — Brunch & Về SGN",items:[{time:"08:00–09:00",act:"🥐 Buffet sáng cuối + trả phòng",cost:"Đã gồm"},{time:"09:30–11:00",act:"🎁 Mua quà đặc sản Ninh Bình",cost:"200K"},{time:"11:30–13:00",act:"🥐 Brunch Sisterfields / 7 Bridges — Sunday Treat",cost:"200K/ng"},{time:"13:30–15:30",act:"🚐 Xe riêng NB → HN",cost:"400K"},{time:"16:00–17:30",act:"🚕 Ra Nội Bài",cost:"350K"},{time:"19:00–21:00",act:"✈️ VNA HAN → SGN",cost:"~1.5tr"}]}]},{name:"🔴 Đẳng cấp",range:"~20-30tr/người",flight:{desc:"VNA Business + xe VIP",price:"4–6tr + 800K"},hotel:{desc:"Hidden Charm / Emeralda 5★ (3 đêm) + Sofitel Metropole HN (1 đêm)",price:"3–4.5tr/đêm → ~12-15tr/4đ"},total:"~20-30tr/người · Cặp đôi ~16-24tr/người",days:[{day:"Ngày 1 — Private Tràng An",items:[{time:"09:00–11:00",act:"✈️ Business Class SGN → HAN",cost:"~2.5tr/chiều"},{time:"11:30–13:00",act:"🚐 Xe VIP HN → NB, Hidden Charm / Emeralda 5★ — honeymoon suite + champagne",cost:"800K"},{time:"13:00–14:00",act:"🍽️ Fine set lunch resort",cost:"350–450K/ng"},{time:"14:30–17:30",act:"🛶 Tràng An thuyền riêng hoàn toàn + guide — tuyến 3 ít người, cực riêng tư",cost:"1.5tr/cặp"},{time:"18:00–19:00",act:"🍸 Sunset cocktail pool bar view núi",cost:"250K/ly"},{time:"19:30–21:30",act:"💕 Private dinner bên hồ sen + dê 9 món + wine pairing",cost:"800K–1.2tr/ng"}]},{day:"Ngày 2 — Tam Cốc & Wellness",items:[{time:"07:00–07:30",act:"🥐 In-room breakfast",cost:"Đã gồm"},{time:"08:00–10:00",act:"🛶 Tam Cốc thuyền riêng sáng sớm — sương khói, chỉ 2 người và bác lái đò",cost:"Vé 200K + riêng 500K"},{time:"10:30–12:00",act:"🏔️ Hang Múa — photographer riêng chụp couple panoramic",cost:"Vé 100K + photo 500K"},{time:"12:30–13:30",act:"🍽️ Fine lunch resort view đồng lúa",cost:"350K/ng"},{time:"14:00–16:00",act:"💆 Couple spa premium 120 phút (aromatherapy + hot stone)",cost:"1.8–2.5tr/cặp"},{time:"16:30–18:00",act:"🚲 E-bike đôi sunset + đền Thái Vi",cost:"150K"},{time:"19:00–21:30",act:"🕯️ Private dinner giữa vườn sen resort + live acoustic",cost:"1–1.5tr/ng"}]},{day:"Ngày 3 — Địa Tạng & Tuyệt Tình Cốc VIP",items:[{time:"08:00–09:00",act:"🥐 Breakfast bên hồ bơi resort",cost:"Đã gồm"},{time:"09:30–11:30",act:"🪷 Địa Tạng Phi Lai Tự — áo dài truyền thống thuê + photographer",cost:"800K áo dài + photo"},{time:"12:00–13:00",act:"🍽️ Fine lunch tinh tế",cost:"350K/ng"},{time:"13:30–15:30",act:"💎 Tuyệt Tình Cốc + Bích Động — concept shoot ảnh cưới",cost:"1tr photographer"},{time:"16:00–17:30",act:"🐦 Thung Nham thuyền riêng — ngắm chim về tổ lúc chiều",cost:"Đò VIP 400K"},{time:"18:00–19:00",act:"☕ Cafe premium + thư giãn",cost:"200K"},{time:"19:30–21:30",act:"💕 Candle-light dinner riêng trên sân thượng resort + wine",cost:"1.2–1.5tr/ng"}]},{day:"Ngày 4 — Bái Đính & Hà Nội Luxury",items:[{time:"08:00–09:00",act:"🥐 In-villa breakfast cuối",cost:"Đã gồm"},{time:"09:30–11:30",act:"🏛️ Bái Đính — tour VIP guide tiếng Anh, xe điện riêng",cost:"500K"},{time:"12:00–13:00",act:"🎁 Quà luxury: rượu Kim Sơn cổ, trà sen hạng A",cost:"500K"},{time:"13:30–15:00",act:"🚐 Xe VIP NB → HN, check-in Sofitel Metropole / Capella",cost:"800K"},{time:"15:30–17:30",act:"💆 Couple spa premium Sofitel 90 phút",cost:"2–2.5tr/cặp"},{time:"18:00–19:00",act:"🍸 Afternoon tea Le Club Metropole",cost:"400K/ng"},{time:"19:30–21:30",act:"💕 Farewell dinner T.U.N.G Dining / La Badiane — top fine dining HN",cost:"1.2–2tr/ng"}]},{day:"Ngày 5 — Bay Business Về",items:[{time:"08:30–09:30",act:"🥐 Breakfast 5★ cuối + trả phòng",cost:"Đã gồm"},{time:"10:00–11:00",act:"📸 Photoshoot kỷ niệm quanh Hồ Gươm",cost:"—"},{time:"11:30–13:00",act:"🚐 Xe VIP ra Nội Bài",cost:"600K"},{time:"14:30–16:30",act:"✈️ Business Class HAN → SGN",cost:"~2.5tr"}]}]}]}];
 
-export default function HoneymoonPlan(){const[dest,setDest]=useState("phuquoc");const[tier,setTier]=useState(0);const[openDay,setOpenDay]=useState(0);const plan=plans.find(p=>p.id===dest);const t=plan.tiers[tier];return(<div style={{fontFamily:"'Crimson Text','Noto Serif',Georgia,serif",background:"linear-gradient(135deg,#fdf6e3 0%,#fef3c7 30%,#fdf2f8 70%,#ede9fe 100%)",minHeight:"100vh",color:"#1c1917"}}><div style={{background:"linear-gradient(180deg,rgba(120,53,15,0.08) 0%,transparent 100%)",padding:"28px 16px 16px",textAlign:"center",borderBottom:"1px solid rgba(180,130,60,0.15)"}}><div style={{fontSize:11,letterSpacing:4,color:"#92400e",textTransform:"uppercase",marginBottom:4}}>Honeymoon Plan 2026</div><h1 style={{fontSize:22,fontWeight:700,margin:"0 0 4px",background:"linear-gradient(135deg,#92400e,#b45309,#d97706)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Lịch Trình Trăng Mật Chi Tiết</h1><div style={{fontSize:12,color:"#78716c"}}>📅 27–31/10/2026 · 5N4Đ · 🛫 Từ TP.HCM · 💕 Dành cho cặp đôi</div></div><div style={{display:"flex",gap:6,padding:"12px 12px 0",overflowX:"auto"}}>{plans.map(p=>(<button key={p.id} onClick={()=>{setDest(p.id);setTier(0);setOpenDay(0);}} style={{flex:1,padding:"10px 8px",borderRadius:12,border:dest===p.id?`2px solid ${p.color}`:"1px solid #d6d3d1",background:dest===p.id?"white":"#fafaf9",fontSize:12,fontWeight:dest===p.id?700:400,cursor:"pointer",fontFamily:"inherit",color:dest===p.id?p.color:"#57534e",textAlign:"center",minWidth:85}}><div style={{fontSize:20}}>{p.emoji}</div><div style={{fontWeight:700}}>{p.name}</div><div style={{fontSize:9,color:"#a8a29e",marginTop:2}}>{p.vibe?.split(",")[0]}</div></button>))}</div><div style={{display:"flex",gap:6,padding:"10px 12px",overflowX:"auto"}}>{plan.tiers.map((ti,i)=>(<button key={i} onClick={()=>{setTier(i);setOpenDay(0);}} style={{flex:1,padding:"8px 6px",borderRadius:10,border:tier===i?`2px solid ${plan.color}`:"1px solid #e7e5e4",background:tier===i?`${plan.color}10`:"white",fontSize:11,fontWeight:tier===i?700:400,cursor:"pointer",fontFamily:"inherit",color:tier===i?plan.color:"#78716c",textAlign:"center"}}><div style={{fontSize:12,fontWeight:700}}>{ti.name}</div><div style={{marginTop:2,fontSize:10}}>{ti.range}</div></button>))}</div><div style={{margin:"0 12px 8px",padding:12,background:"#fffbeb",border:"1px solid #fde68a",borderRadius:12}}><div style={{fontSize:13,fontWeight:700,color:"#92400e",marginBottom:6}}>📋 GÓI {t.name}</div><div style={{fontSize:12,color:"#44403c",lineHeight:1.7}}><div>✈️ <b>Bay:</b> {t.flight.desc} — <span style={{color:plan.color,fontWeight:600}}>{t.flight.price}</span></div><div>🏨 <b>Lưu trú:</b> {t.hotel.desc} — <span style={{color:plan.color,fontWeight:600}}>{t.hotel.price}</span></div><div style={{marginTop:6,padding:"6px 10px",background:"#fef3c7",borderRadius:8,fontWeight:700,color:"#92400e",fontSize:13,textAlign:"center"}}>💰 {t.total}</div></div></div><div style={{margin:"0 12px 8px",padding:10,background:"white",border:"1px solid #e7e5e4",borderRadius:12}}><div style={{fontSize:12,fontWeight:700,color:plan.color,marginBottom:6}}>🎒 VẬT DỤNG CẦN MANG</div><div style={{display:"flex",flexWrap:"wrap",gap:4}}>{plan.packing.map((item,i)=>(<span key={i} style={{fontSize:10,background:"#f5f5f4",padding:"3px 7px",borderRadius:8,color:"#44403c"}}>☑️ {item}</span>))}</div></div><div style={{padding:"0 12px 20px"}}>{t.days.map((day,di)=>(<div key={di} style={{marginBottom:8}}><button onClick={()=>setOpenDay(openDay===di?-1:di)} style={{width:"100%",padding:"12px 14px",borderRadius:openDay===di?"12px 12px 0 0":"12px",border:`1px solid ${openDay===di?plan.color:"#e7e5e4"}`,borderBottom:openDay===di?`2px solid ${plan.color}`:"1px solid #e7e5e4",background:openDay===di?"white":"#fafaf9",cursor:"pointer",fontFamily:"inherit",textAlign:"left",display:"flex",alignItems:"center",justifyContent:"space-between"}}><div><span style={{fontSize:11,background:`${plan.color}15`,color:plan.color,padding:"2px 8px",borderRadius:8,fontWeight:700,marginRight:8}}>Ngày {di+1}</span><span style={{fontSize:13,fontWeight:600,color:"#292524"}}>{day.day.split("—")[1]?.trim()}</span></div><span style={{fontSize:16,color:"#a8a29e"}}>{openDay===di?"▲":"▼"}</span></button>{openDay===di&&(<div style={{background:"white",border:`1px solid ${plan.color}`,borderTop:"none",borderRadius:"0 0 12px 12px",padding:"6px 0"}}>{day.items.map((item,ii)=>(<div key={ii} style={{display:"flex",padding:"7px 12px",borderBottom:ii<day.items.length-1?"1px solid #f5f5f4":"none",gap:8,alignItems:"flex-start"}}><div style={{width:52,flexShrink:0,fontSize:10,fontWeight:700,color:plan.color,paddingTop:2}}>{item.time.split("–")[0]}</div><div style={{flex:1,minWidth:0}}><div style={{fontSize:12,color:"#292524",lineHeight:1.5}}>{item.act}</div></div><div style={{flexShrink:0,fontSize:10,fontWeight:600,color:item.cost==="Miễn phí"?"#16a34a":item.cost==="Đã gồm"?"#059669":item.cost==="—"?"#a8a29e":"#b45309",textAlign:"right",maxWidth:95}}>{item.cost}</div></div>))}</div>)}</div>))}</div><div style={{margin:"0 12px 12px",padding:12,background:"linear-gradient(135deg,#fdf2f8,#fce7f3)",borderRadius:12,border:"1px solid #fbcfe8"}}><div style={{fontSize:12,fontWeight:700,color:"#be185d",marginBottom:6}}>💕 Tips Trăng Mật</div><div style={{fontSize:11,color:"#6b7280",lineHeight:1.6}}>• Đặt honeymoon setup (hoa, nến, trái cây) trước 1 tuần — nhiều resort miễn phí<br/>• Book dinner lãng mạn trước, đặc biệt cuối tuần<br/>• Mang ảnh cưới nhỏ trang trí phòng<br/>• T10 mùa thấp điểm → giá giảm 30-50%, ít đông, riêng tư hơn</div></div><div style={{padding:"8px 16px 32px",textAlign:"center",fontSize:10,color:"#a8a29e",lineHeight:1.6}}>💰 Giá tham khảo 04/2026. Nguồn: VnExpress, BestPrice, Traveloka, Vinwonders, Tràng An, BQL Vịnh Hạ Long.</div></div>);}
+// ===== NINH BÌNH HONEYMOON — 5N4Đ LÃNG MẠN =====
+const plan = {
+  name: "Ninh Bình",
+  emoji: "🛶",
+  color: "#78716c",
+  accent: "#b45309",
+  vibe: "Hạ Long trên cạn · Cố đô ngàn năm · Đồng lúa vàng",
+  tagline: "Thuyền Tràng An · Đỉnh Hang Múa · Phố cổ lên đèn",
+  dates: "27–31/10/2026",
+  duration: "5 ngày 4 đêm",
+  from: "TP.HCM",
+  tier: {
+    name: "🟡 Lãng Mạn",
+    range: "~12–17tr/người · Cặp đôi ~10–14tr/người",
+    flight: "VNA SGN↔HAN giờ đẹp · 2.5–3.5tr khứ hồi",
+    hotel: "Resort 4★: Emeralda / Tam Coc Garden / Hidden Charm / Lasen Village",
+    hotelPrice: "1.2–2tr/đêm · Tổng ~6tr/4đ",
+    transport: "Xe riêng HN↔NB · 400K/chiều",
+    total: "💰 10–14tr/người · ~24–32tr cho cặp đôi"
+  },
+};
+
+const days = [
+  {
+    id: 0,
+    title: "Ngày 1 — Di Sản Tràng An",
+    subtitle: "🛫 Bay từ SGN · Check-in resort · Thuyền Tràng An 3h",
+    highlight: "🛶 Tràng An tuyến 2 — thuê thuyền riêng cho 2",
+    items: [
+      { t: "07:00–09:00", act: "✈️ VNA SGN → HAN", note: "Chọn chuyến sáng sớm để tối đa hoá ngày 1", cost: "~1.5tr/chiều" },
+      { t: "09:30–11:30", act: "🚐 Xe riêng HN → NB (1.5h)", note: "Đón tận cổng Nội Bài · Nghỉ trạm Ninh Bình ăn nhẹ", cost: "400K/ng" },
+      { t: "12:00–13:00", act: "🏨 Check-in resort 4★ (Emeralda / Lasen Village)", note: "Yêu cầu honeymoon setup trước (hoa, nến, trái cây)", cost: "—" },
+      { t: "13:00–14:00", act: "🍽️ Set lunch đặc sản — dê tái chanh, cơm cháy sốt dê", note: "Quán gợi ý: Dê 1969 / Áp Xuân Vinh / Chính Thu", cost: "220–280K/ng" },
+      { t: "14:30–17:30", act: "🛶 Tràng An tuyến 2 — thuyền riêng 3h", note: "⚠️ ĐẶT VÉ ONLINE TỪ TỐI TRƯỚC · Ăn no + đi vệ sinh trước khi lên thuyền", cost: "300K × 2 + thuê riêng 600K + tip 100K" },
+      { t: "17:45–18:30", act: "☕ Offy Highlands Tràng An — sunset cocktail", note: "View ra Bến An cực đẹp, có ổ điện sạc pin", cost: "120K/ly" },
+      { t: "19:00–21:00", act: "🕯️ Romantic dinner resort — dê 7 món + rượu vang", note: "Đặt bàn view hồ sen/cánh đồng lúa", cost: "450–550K/ng" },
+    ],
+    tips: [
+      "🎫 Vé Tràng An: mua online tại www.trangan.vn tối trước, tránh xếp hàng sáng",
+      "🚻 3 tiếng trên thuyền không có toilet — đi trước khi lên",
+      "🍱 Được mang đồ ăn nhẹ lên thuyền (nước, trái cây, bánh ngọt)",
+      "💵 Chuẩn bị tiền lẻ 50–100K tip cô/chú lái đò (tự nguyện)",
+    ],
+  },
+  {
+    id: 1,
+    title: "Ngày 2 — Tam Cốc & Ngọa Long",
+    subtitle: "🌅 Sông Ngô Đồng · Leo 500 bậc · Hoàng hôn",
+    highlight: "🏔️ Hang Múa hoàng hôn 'Ngọa Long' — khoảnh khắc đẹp nhất",
+    items: [
+      { t: "07:00–07:30", act: "🥐 Buffet sáng resort", note: "Ăn chắc bụng trước khi leo núi", cost: "Đã gồm" },
+      { t: "08:00–10:30", act: "🛶 Tam Cốc thuyền đôi sông Ngô Đồng", note: "Đi sớm vắng, sương khói thơ mộng · Mùa lúa vàng T5–6 đẹp nhất", cost: "Vé 200K + tip 50K" },
+      { t: "11:00–12:30", act: "🏔️ Hang Múa — chinh phục 500 bậc", note: "💪 Giày thể thao êm · 📸 Chụp couple 'Ngọa Long' panoramic trên đỉnh", cost: "Vé 100K" },
+      { t: "13:00–14:00", act: "🍽️ Cơm niêu view đồng lúa", note: "Nhà hàng Trung Tuyết / Hoàng Giang Tam Cốc", cost: "180–220K/ng" },
+      { t: "14:30–16:30", act: "💆 Couple spa resort 90 phút", note: "Hot stone / aromatherapy / thảo dược", cost: "800K–1.2tr/cặp" },
+      { t: "17:00–18:30", act: "🚲 Đạp xe đôi sunset qua ruộng lúa → đền Thái Vi", note: "Quãng đường bằng phẳng, dễ đi · Thuê ~30K/chiếc", cost: "60K" },
+      { t: "19:00–21:00", act: "🕯️ Candle-light dinner bên hồ sen resort", note: "Yêu cầu set menu romantic + bánh kỷ niệm", cost: "500–700K/ng" },
+    ],
+    tips: [
+      "🌅 Ngắm hoàng hôn Hang Múa đẹp hơn bình minh — lên khoảng 16:00 để 17:30 có vị trí đẹp",
+      "👟 500 bậc đá không dốc nhưng hơi trơn — giày bám là bắt buộc",
+      "📸 Đỉnh Hang Múa có 2 hướng chụp: rồng đá (Ngọa Long) + toàn cảnh Tam Cốc",
+      "💧 Mang 1 chai nước 500ml, trên đỉnh không có chỗ mua",
+    ],
+  },
+  {
+    id: 2,
+    title: "Ngày 3 — Tâm Linh & Tuyệt Tình Cốc",
+    subtitle: "🪷 Chùa chuông gió · 💎 Nước xanh ngọc bích",
+    highlight: "💎 Tuyệt Tình Cốc — góc ảnh couple signature",
+    items: [
+      { t: "07:30–08:30", act: "🥐 Buffet sáng thong thả", note: "Sáng nay đi tâm linh nên mặc áo kín đáo", cost: "Đã gồm" },
+      { t: "09:00–11:00", act: "🪷 Địa Tạng Phi Lai Tự (cách ~45 phút)", note: "Chùa chuông gió chữa lành · Ảnh áo dài couple · Mặc áo tay dài, quần dài", cost: "Miễn phí + xe 300K khứ hồi" },
+      { t: "11:30–12:30", act: "🍽️ Lunch gỏi cá nhệch Kim Sơn / bánh đa cá rô đồng", note: "Đặc sản khó tìm ở chỗ khác", cost: "200K/ng" },
+      { t: "13:30–15:30", act: "💎 Tuyệt Tình Cốc (Động Am Tiên)", note: "Nước xanh ngọc bích · Góc ảnh cặp đôi viral TikTok · Vé khá rẻ", cost: "Vé 45K/ng" },
+      { t: "16:00–17:30", act: "🪷 Chùa Bích Động", note: "Mùa hoa súng T10–12 cực đẹp · Trèo lên tầng 3 ngắm toàn cảnh", cost: "Vé 20K" },
+      { t: "18:00–19:00", act: "☕ 007 Đam Khê Specialty Coffee Tam Cốc", note: "Cafe/matcha ổn nhất Tam Cốc theo review", cost: "100K/cặp" },
+      { t: "19:30–21:30", act: "🕯️ Fine dinner 7 Bridges", note: "Đồ ăn ngon, không gian đẹp, hợp ngồi nhâm nhi tối", cost: "400–550K/ng" },
+    ],
+    tips: [
+      "🧥 Địa Tạng Phi Lai Tự và Bích Động là chùa — bắt buộc áo kín đáo",
+      "📸 Tuyệt Tình Cốc: đi sáng 8–10h hoặc chiều 14–16h ánh sáng đẹp nhất",
+      "🚗 3 điểm cách nhau 30–60 phút nên cần xe riêng hoặc Grab cả ngày",
+      "💒 Nếu thuê áo dài trước, Địa Tạng Phi Lai Tự là background đẹp nhất",
+    ],
+  },
+  {
+    id: 3,
+    title: "Ngày 4 — Bái Đính & Phố Cổ Đêm",
+    subtitle: "🏛️ Chùa lớn nhất ĐNA · 🏮 Hoa Lư lên đèn",
+    highlight: "🏮 Phố cổ Hoa Lư ban đêm — lãng mạn như Hội An",
+    items: [
+      { t: "07:30–08:30", act: "🥐 Buffet sáng", note: "Hôm nay di chuyển nhiều, ăn no", cost: "Đã gồm" },
+      { t: "09:00–11:30", act: "🏛️ Chùa Bái Đính — quần thể lớn nhất ĐNA", note: "Xe điện VIP (không đi bộ, rộng lắm) · Áo dài tay, quần dài", cost: "Xe điện 250K + vé 50K" },
+      { t: "12:00–13:00", act: "🍽️ Lunch ốc núi hấp sả + dê nướng tảng", note: "Quán gần Bái Đính có đặc sản ốc núi độc đáo", cost: "180–220K/ng" },
+      { t: "14:00–16:00", act: "🛶 Đầm Vân Long — thuyền mái che", note: "Yên tĩnh tuyệt đối · May mắn sẽ thấy voọc quần đùi trắng quý hiếm", cost: "Đò riêng 200K/cặp" },
+      { t: "16:30–17:30", act: "📸 Bãi đá Tràng An — chụp ảnh cưới concept", note: "Tìm 'Rìa Tràng An — Điểm chụp ảnh cưới đẹp' trên Google Maps", cost: "—" },
+      { t: "18:30–20:00", act: "🏮 Phố cổ Hoa Lư lên đèn + chèo thuyền đôi", note: "Đẹp như Hội An · Chèo thuyền buổi tối dưới đèn lồng cực lãng mạn", cost: "Thuyền 80K/cặp" },
+      { t: "20:30–22:00", act: "🔥 Dinner nướng phố cổ — 1988 BBQ / Nướng Gasu / Gogi", note: "Vừa ăn vừa ngắm view phố cổ đêm", cost: "300–400K/ng" },
+    ],
+    tips: [
+      "👕 Bái Đính rất rộng — không mua xe điện sẽ phải đi bộ 3km dưới nắng",
+      "🙏 Để giày ở cửa chính điện khi vào thắp hương",
+      "🐒 Voọc ở Vân Long chỉ xuất hiện sáng sớm 5–7h hoặc chiều 16–18h",
+      "🎆 Phố cổ Hoa Lư tổ chức lễ hội đèn lồng cuối tuần — check lịch trước",
+    ],
+  },
+  {
+    id: 4,
+    title: "Ngày 5 — Brunch & Bay Về",
+    subtitle: "🥐 Sisterfields · 🎁 Quà Cố Đô · ✈️ SGN",
+    highlight: "🥐 Sisterfields brunch — Sunday Treat chia tay Ninh Bình",
+    items: [
+      { t: "08:00–09:00", act: "🥐 Buffet sáng cuối + trả phòng", note: "Check-out trễ 12h (yêu cầu trước)", cost: "Đã gồm" },
+      { t: "09:30–11:00", act: "🎁 Mua quà — cơm cháy, mắm tép, rượu Kim Sơn, nem chua Yên Mạc", note: "Chợ Ninh Bình hoặc siêu thị đặc sản Hoa Lư", cost: "200–300K" },
+      { t: "11:30–13:00", act: "🥐 Brunch Sisterfields — Sunday Treat", note: "Brunch ngon, khẩu phần lớn, quán xinh chụp ảnh đẹp · 150K/set", cost: "200K/ng" },
+      { t: "13:30–15:30", act: "🚐 Xe riêng NB → HN", note: "Có thể dừng nghỉ ở Phủ Lý ăn nhẹ", cost: "400K" },
+      { t: "16:00–17:30", act: "🚕 Ra sân bay Nội Bài", note: "Grab hoặc xe dịch vụ", cost: "350K" },
+      { t: "19:00–21:00", act: "✈️ VNA HAN → SGN", note: "Check-in online trước 2h", cost: "~1.5tr" },
+    ],
+    tips: [
+      "📦 Cơm cháy dễ vỡ — gói hành lý ký gửi cẩn thận",
+      "🍶 Rượu Kim Sơn >100ml phải ký gửi, không mang lên cabin",
+      "⏰ Chuyến bay chiều tối thì trưa có thể đi Sisterfields thong thả",
+      "💾 Tải ảnh về điện thoại/cloud ngay trên xe về HN cho chắc",
+    ],
+  },
+];
+
+const packing = [
+  { icon: "👟", item: "Giày thể thao êm chân (Hang Múa 500 bậc)" },
+  { icon: "👗", item: "Áo dài couple + váy chụp đồng lúa" },
+  { icon: "🧕", item: "Áo kín đáo tay dài (Bái Đính, Bích Động)" },
+  { icon: "🧴", item: "Kem chống nắng SPF50+ · nón lá cho thuyền" },
+  { icon: "💧", item: "Chai nước cá nhân · tiền lẻ tip lái đò" },
+  { icon: "🔋", item: "Pin dự phòng · cáp sạc · thẻ nhớ máy ảnh" },
+  { icon: "🧥", item: "Áo khoác mỏng (sáng sớm 22–25°C tháng 10)" },
+  { icon: "💍", item: "Nhẫn/nước hoa/đồ đẹp cho dinner lãng mạn" },
+];
+
+const foodMap = {
+  "🐐 Dê núi": ["Dê 1969 (mới, rộng)", "Áp Xuân Vinh", "Thành Long", "Chính Thu"],
+  "🔥 Nướng/Lẩu": ["1988 BBQ (phố cổ)", "Nướng Gasu", "Gogi", "Thanh Phong (lẩu bò)"],
+  "☕ Cafe & Matcha": ["At Where Cafe", "DRIP by haimuoibon", "Offy Highlands Tràng An", "007 Đam Khê Specialty Coffee"],
+  "🥐 Brunch/Fine": ["Sisterfields", "7 Bridges", "Starbucks Tràng An (trước 8h)"],
+};
+
+const souvenirs = [
+  "🍚 Cơm cháy chà bông — đặc sản trứ danh",
+  "🍶 Rượu nếp Kim Sơn — quốc tửu của Việt Nam",
+  "🦐 Mắm tép Gia Viễn — tinh tuý Ninh Bình",
+  "🥟 Nem chua Yên Mạc — dai ngon đặc biệt",
+];
+
+const proTips = [
+  { icon: "🎫", tip: "Đặt vé Tràng An online tối trước — tránh xếp hàng 2h sáng" },
+  { icon: "🚻", tip: "Đi vệ sinh TRƯỚC khi lên thuyền Tràng An — 3 tiếng không có toilet" },
+  { icon: "🍱", tip: "Ăn sáng chắc bụng + mang đồ ăn nhẹ lên thuyền (đừng mang lẩu 😄)" },
+  { icon: "🚣", tip: "Thuyền Tràng An tối đa 4–5 người — cặp đôi có thể thuê riêng như private yacht" },
+  { icon: "🌅", tip: "Hang Múa hoàng hôn (16–18h) đẹp hơn bình minh — ánh sáng vàng lên núi" },
+  { icon: "📸", tip: "Tuyệt Tình Cốc: đi sáng 8–10h ánh sáng phản chiếu lên nước xanh đẹp nhất" },
+  { icon: "🏮", tip: "Phố cổ Hoa Lư ban đêm đẹp như Hội An — chèo thuyền dưới đèn lồng" },
+  { icon: "⛔", tip: "KHÔNG đi: Thung Ui (chưa hoàn thiện) · Trại Gấu Phú Long (chỉ 1–2 con)" },
+];
+
+const momentsForTwo = [
+  { emoji: "🚣‍♀️", title: "Thuyền riêng Tràng An", desc: "Thuê cả thuyền chỉ 2 người — 3 tiếng trôi qua hang động giữa non nước" },
+  { emoji: "🌅", title: "Hoàng hôn Ngọa Long", desc: "Đỉnh Hang Múa lúc 17:30 — rồng đá + ruộng lúa vàng" },
+  { emoji: "🪷", title: "Chuông gió Địa Tạng", desc: "Chùa yên bình, ảnh áo dài couple nổi bần bật trên nền xanh" },
+  { emoji: "💎", title: "Tuyệt Tình Cốc", desc: "Nước xanh ngọc bích — góc ảnh cưới signature TikTok-viral" },
+  { emoji: "🚲", title: "Đạp xe đôi Tam Cốc", desc: "Ruộng lúa, đền cổ, sông nhỏ — chill nhất hành trình" },
+  { emoji: "🏮", title: "Đêm phố cổ Hoa Lư", desc: "Chèo thuyền dưới đèn lồng — phiên bản Hội An của Bắc Bộ" },
+];
+
+const budget = [
+  { label: "✈️ Bay VNA SGN↔HAN (2 người)", cost: "5–7tr" },
+  { label: "🚐 Xe riêng HN↔NB (khứ hồi + Nội Bài)", cost: "1.1tr" },
+  { label: "🏨 Resort 4★ 4 đêm (cặp đôi)", cost: "6–8tr" },
+  { label: "🍽️ Ăn uống 5 ngày (nhà hàng/fine dining)", cost: "4–5tr" },
+  { label: "🎫 Vé tham quan + thuê thuyền riêng", cost: "1.5–2tr" },
+  { label: "💆 Couple spa 90 phút", cost: "1tr" },
+  { label: "☕ Cafe, phố cổ, quà", cost: "1.5tr" },
+  { label: "📋 Tổng cho CẶP ĐÔI", cost: "~20–26tr", bold: true },
+];
+
+export default function HoneymoonPlan() {
+  const [openDay, setOpenDay] = useState(0);
+
+  const bg = "linear-gradient(135deg,#fdf6e3 0%,#fef3c7 30%,#fdf2f8 70%,#ede9fe 100%)";
+  const serif = "'Crimson Text','Noto Serif',Georgia,serif";
+
+  return (
+    <div style={{ fontFamily: serif, background: bg, minHeight: "100vh", color: "#1c1917" }}>
+      {/* HERO */}
+      <div style={{ background: "linear-gradient(180deg,rgba(120,53,15,0.08) 0%,transparent 100%)", padding: "28px 16px 20px", textAlign: "center", borderBottom: "1px solid rgba(180,130,60,0.15)" }}>
+        <div style={{ fontSize: 11, letterSpacing: 4, color: "#92400e", textTransform: "uppercase", marginBottom: 6 }}>Honeymoon Plan 2026</div>
+        <div style={{ fontSize: 44, marginBottom: 4 }}>{plan.emoji}</div>
+        <h1 style={{ fontSize: 26, fontWeight: 700, margin: "0 0 6px", background: "linear-gradient(135deg,#92400e,#b45309,#d97706)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          {plan.name} — Trăng Mật Cố Đô
+        </h1>
+        <div style={{ fontSize: 13, color: "#78716c", fontStyle: "italic", marginBottom: 8 }}>{plan.tagline}</div>
+        <div style={{ fontSize: 12, color: "#78716c" }}>📅 {plan.dates} · ⏳ {plan.duration} · 🛫 Từ {plan.from} · 💕 Cặp đôi</div>
+      </div>
+
+      {/* GÓI LÃNG MẠN */}
+      <div style={{ margin: "16px 12px 8px", padding: 16, background: "linear-gradient(135deg,#fffbeb,#fef3c7)", border: "1px solid #fde68a", borderRadius: 14, boxShadow: "0 2px 8px rgba(180,130,60,0.08)" }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "#92400e", marginBottom: 10 }}>📋 GÓI {plan.tier.name}</div>
+        <div style={{ fontSize: 13, color: "#44403c", lineHeight: 1.8 }}>
+          <div>✈️ <b>Bay:</b> {plan.tier.flight}</div>
+          <div>🚐 <b>Xe:</b> {plan.tier.transport}</div>
+          <div>🏨 <b>Lưu trú:</b> {plan.tier.hotel}</div>
+          <div style={{ fontSize: 12, color: "#78716c", marginLeft: 22 }}>{plan.tier.hotelPrice}</div>
+        </div>
+        <div style={{ marginTop: 10, padding: "10px 12px", background: "#fef3c7", borderRadius: 10, fontWeight: 700, color: "#92400e", fontSize: 14, textAlign: "center" }}>
+          {plan.tier.total}
+        </div>
+      </div>
+
+      {/* MOMENTS CHO 2 */}
+      <div style={{ margin: "16px 12px", padding: 14, background: "linear-gradient(135deg,#fdf2f8,#fce7f3)", border: "1px solid #fbcfe8", borderRadius: 14 }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "#9f1239", marginBottom: 10 }}>💕 Moments Dành Cho Hai Người</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+          {momentsForTwo.map((m, i) => (
+            <div key={i} style={{ padding: 10, background: "white", borderRadius: 10, border: "1px solid #fce7f3" }}>
+              <div style={{ fontSize: 22, marginBottom: 4 }}>{m.emoji}</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: "#9f1239", marginBottom: 3 }}>{m.title}</div>
+              <div style={{ fontSize: 11, color: "#78716c", lineHeight: 1.5 }}>{m.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* LỊCH TRÌNH */}
+      <div style={{ margin: "20px 12px 8px" }}>
+        <div style={{ fontSize: 15, fontWeight: 700, color: "#92400e", marginBottom: 10, textAlign: "center", letterSpacing: 2 }}>
+          ━━ LỊCH TRÌNH CHI TIẾT ━━
+        </div>
+        {days.map((day) => {
+          const isOpen = openDay === day.id;
+          return (
+            <div key={day.id} style={{ marginBottom: 10, background: "white", borderRadius: 14, border: `1px solid ${isOpen ? plan.accent : "#e7e5e4"}`, overflow: "hidden", boxShadow: isOpen ? "0 4px 12px rgba(180,90,20,0.12)" : "0 1px 3px rgba(0,0,0,0.04)" }}>
+              <button
+                onClick={() => setOpenDay(isOpen ? -1 : day.id)}
+                style={{ width: "100%", padding: "14px 14px", background: isOpen ? "linear-gradient(135deg,#fffbeb,#fef3c7)" : "white", border: "none", cursor: "pointer", fontFamily: serif, textAlign: "left" }}
+              >
+                <div style={{ fontSize: 14, fontWeight: 700, color: plan.accent, marginBottom: 4 }}>
+                  {day.title} {isOpen ? "▼" : "▶"}
+                </div>
+                <div style={{ fontSize: 12, color: "#78716c", marginBottom: 6 }}>{day.subtitle}</div>
+                <div style={{ fontSize: 11, color: "#a8a29e", fontStyle: "italic" }}>✨ {day.highlight}</div>
+              </button>
+
+              {isOpen && (
+                <div style={{ padding: "4px 14px 14px" }}>
+                  {day.items.map((it, idx) => (
+                    <div key={idx} style={{ display: "flex", gap: 10, padding: "10px 0", borderTop: idx === 0 ? "1px dashed #e7e5e4" : "1px dashed #f5f5f4" }}>
+                      <div style={{ flexShrink: 0, width: 76, fontSize: 10, color: plan.accent, fontWeight: 700, paddingTop: 2 }}>{it.t}</div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ fontSize: 13, color: "#1c1917", lineHeight: 1.5, marginBottom: 3 }}>{it.act}</div>
+                        {it.note && <div style={{ fontSize: 11, color: "#78716c", lineHeight: 1.5, fontStyle: "italic" }}>{it.note}</div>}
+                        <div style={{ fontSize: 10, color: "#a8a29e", marginTop: 3 }}>💰 {it.cost}</div>
+                      </div>
+                    </div>
+                  ))}
+                  {day.tips && day.tips.length > 0 && (
+                    <div style={{ marginTop: 10, padding: 10, background: "#f0fdf4", border: "1px solid #bbf7d0", borderRadius: 10 }}>
+                      <div style={{ fontSize: 11, fontWeight: 700, color: "#166534", marginBottom: 6 }}>💡 Pro tips cho ngày này</div>
+                      {day.tips.map((tip, i) => (
+                        <div key={i} style={{ fontSize: 11, color: "#14532d", lineHeight: 1.6, marginBottom: 3 }}>• {tip}</div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* BẢN ĐỒ ẨM THỰC */}
+      <div style={{ margin: "20px 12px 8px", padding: 14, background: "white", borderRadius: 14, border: "1px solid #e7e5e4" }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "#92400e", marginBottom: 10 }}>🍽️ Bản Đồ Ẩm Thực Cố Đô</div>
+        {Object.entries(foodMap).map(([cat, list]) => (
+          <div key={cat} style={{ marginBottom: 10 }}>
+            <div style={{ fontSize: 12, fontWeight: 700, color: "#44403c", marginBottom: 4 }}>{cat}</div>
+            <div style={{ fontSize: 11, color: "#78716c", lineHeight: 1.7 }}>{list.join(" · ")}</div>
+          </div>
+        ))}
+        <div style={{ marginTop: 12, padding: 10, background: "#fffbeb", borderRadius: 8 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: "#92400e", marginBottom: 6 }}>🎁 Quà mang về</div>
+          {souvenirs.map((s, i) => (
+            <div key={i} style={{ fontSize: 11, color: "#78716c", lineHeight: 1.7 }}>{s}</div>
+          ))}
+        </div>
+      </div>
+
+      {/* PACKING LIST */}
+      <div style={{ margin: "8px 12px", padding: 14, background: "white", borderRadius: 14, border: "1px solid #e7e5e4" }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "#92400e", marginBottom: 10 }}>🎒 Packing List Couple</div>
+        {packing.map((p, i) => (
+          <div key={i} style={{ fontSize: 12, color: "#44403c", lineHeight: 1.9, display: "flex", gap: 8 }}>
+            <span style={{ width: 22 }}>{p.icon}</span>
+            <span>{p.item}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* PRO TIPS */}
+      <div style={{ margin: "8px 12px", padding: 14, background: "linear-gradient(135deg,#f0fdf4,#dcfce7)", borderRadius: 14, border: "1px solid #bbf7d0" }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "#166534", marginBottom: 10 }}>💡 Pro Tips Từ Người Đi Rồi</div>
+        {proTips.map((p, i) => (
+          <div key={i} style={{ fontSize: 12, color: "#14532d", lineHeight: 1.6, marginBottom: 7, display: "flex", gap: 8 }}>
+            <span style={{ width: 22, flexShrink: 0 }}>{p.icon}</span>
+            <span>{p.tip}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* BUDGET */}
+      <div style={{ margin: "8px 12px", padding: 14, background: "white", borderRadius: 14, border: "1px solid #e7e5e4" }}>
+        <div style={{ fontSize: 14, fontWeight: 700, color: "#92400e", marginBottom: 10 }}>💰 Dự Trù Chi Phí (cặp đôi, 5N4Đ)</div>
+        {budget.map((b, i) => (
+          <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderTop: i === 0 ? "none" : b.bold ? "2px solid #92400e" : "1px dashed #e7e5e4", fontSize: 12, fontWeight: b.bold ? 700 : 400, color: b.bold ? "#92400e" : "#44403c" }}>
+            <span>{b.label}</span>
+            <span style={{ fontWeight: 700 }}>{b.cost}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* FOOTER */}
+      <div style={{ padding: "16px 16px 32px", textAlign: "center", fontSize: 10, color: "#a8a29e", lineHeight: 1.7 }}>
+        <div style={{ marginBottom: 4 }}>💍 Made with love for a sweet honeymoon in Ninh Bình</div>
+        <div>Giá tham khảo 04/2026 · Nguồn: TikTok tips, Tràng An, VnExpress, BestPrice</div>
+      </div>
+    </div>
+  );
+}
